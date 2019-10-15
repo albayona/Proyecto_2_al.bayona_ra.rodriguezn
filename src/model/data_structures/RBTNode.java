@@ -45,7 +45,6 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 	 * @param key
 	 * @param val
 	 * @param color
-	 * @param size
 	 */
 	public RBTNode(Key key, Value val, boolean color) {
 		this.key = key;
@@ -69,7 +68,7 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 		if(leftNode != null)
 			leftNode.keysList(keys);
 
-		keys.add(key);
+		keys.addLast(key);
 
 		if(rightNode != null)
 			rightNode.keysList(keys);
@@ -109,7 +108,7 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 		int superior = end.compareTo(key);
 
 		if(inferior <= 0 && superior >= 0) { // la llave es mayor al limInferior y menor al limSuperior
-			keys.add(key); // se agrega
+			keys.addLast(key); // se agrega
 			if(rightNode != null)
 				rightNode.keysInRange(keys, init, end);;
 				if(leftNode != null)
@@ -136,7 +135,7 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 * Retorna la cantidad de subnodos que tiene el nodo actual, incluido él mismo
+	 * Retorna la cantidad de subnodos que tiene el nodo actual, incluido ï¿½l mismo
 	 * @return int nodos del actual
 	 */
 	public int getSize() {
@@ -209,7 +208,7 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 *Elimina el nodo cuya llave llega por parámetro. Al eliminar se busca un reemplazo.
+	 *Elimina el nodo cuya llave llega por parï¿½metro. Al eliminar se busca un reemplazo.
 	 * @param pKey la llave asociada al valor que se desea eliminar
 	 * @return El sucesor del nodo que se elimina
 	 */

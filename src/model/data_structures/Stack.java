@@ -12,7 +12,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	/**
 	 * Lista enlazada donde se van a almacenar los elementos de la pila
 	 */
-	private DoublyLinkedList<T> lista;
+	private DoublyLinkedList<T> list;
 	
 	//--------------------------------------------------------
 	//Constructores
@@ -22,17 +22,10 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * Crea una pila vacia.
 	 */
 	public Stack() {
-		lista = new DoublyLinkedList<T>();
+		list = new DoublyLinkedList<T>();
 	}
 	
-	/**
-	 * Crea una pila con el elmento que se pasa por parametro.
-	 * @param t El Elemento (T extends Comparable) que llega por parametro
-	 */
-	public Stack(T t) {
-		lista = new DoublyLinkedList<T>(t);
-	}
-	
+
 	//--------------------------------------------------------
 	//Metodos
 	//--------------------------------------------------------
@@ -42,7 +35,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @return Iterator El iterador de la pila (IteratorList implements Iterator)
 	 */
 	public Iterator<T> iterator() {
-		return lista.iterator();
+		return list.iterator();
 	}
 	
 	/**
@@ -50,7 +43,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @return true si la Pila esta vacia, false de lo contrario
 	 */
 	public boolean isEmpty() {
-		return lista.isEmpty();
+		return list.isEmpty();
 	}
 
 	/**
@@ -58,7 +51,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @return el numero de elemntos contenidos en la pila
 	 */
 	public int size() {
-		return lista.getSize();
+		return list.size();
 	}
 
 	/**
@@ -66,7 +59,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @return el elemento agregado mas recientemente
 	 */
 	public T pop() {
-		return lista.delete(0); //retorna el elemento que eliminó en la primera posicion (0)
+		return list.removeLast(); //retorna el elemento que eliminï¿½ en la primera posicion (0)
 	}
 
 	/**
@@ -74,21 +67,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @param t el nuevo elemento que se va ha agregar
 	 */
 	public void push(T t) {
-		lista.add(t); //El metodo add de DoublyLinkedList siempre añade el elemento al inicio de la lista
+		list.addLast(t); //El metodo add de DoublyLinkedList siempre aï¿½ade el elemento al inicio de la lista
 	}
-	
-	/**
-     * Returns (but does not remove) the item most recently added to this stack.
-     *
-     * @return the item most recently added to this stack
-     * @throws NoSuchElementException if this stack is empty
-     */
-    public T peek() {
-        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
-        return lista.getElement(0);
-    }
-	
-	public T[] toArray(Class<T> type) {
-		return lista.toArray(type);
-	}
+
 }

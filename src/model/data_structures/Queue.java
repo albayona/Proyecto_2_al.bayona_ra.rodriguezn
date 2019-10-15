@@ -29,14 +29,6 @@ public class Queue<E extends Comparable<E>> implements Iterable<E>{
 	}
 	
 
-	/**
-	 * Crea una cola a partir del elmento que se pasa por parametro.
-	 * @param t El Elemento (T extends Comparable) que llega por parametro
-	 */
-	public Queue(E e) {
-		list = new DoublyLinkedList<E>(e);
-	}
-	
 	
 	//--------------------------------------------------------
 	//Metodos
@@ -52,7 +44,7 @@ public class Queue<E extends Comparable<E>> implements Iterable<E>{
 	 * @throws Exception 
 	 */
 	public E dequeue() {
-		return (E) list.delete(0);
+		return (E) list.removeFirst();
 	}
 
 	/**
@@ -60,7 +52,7 @@ public class Queue<E extends Comparable<E>> implements Iterable<E>{
 	 * @return el numero de elemntos contenidos
 	 */
 	public int size() {
-		return list.getSize();
+		return list.size();
 	}
 
 	/**
@@ -81,14 +73,11 @@ public class Queue<E extends Comparable<E>> implements Iterable<E>{
 	
 	/**
 	 * Inserta un nuevo elemento en la Cola
-	 * @param t el nuevo elemento que se va ha agregar
+	 * @param item el nuevo elemento que se va ha agregar
 	 */
 	public void enqueue(E item) {
-		list.addAtEnd(item);
+		list.addLast(item);
 	}
 
-	public E[] toArray(Class<E> type) { //TODO Andrea
-		return list.toArray(type);
-	}
 
 }
