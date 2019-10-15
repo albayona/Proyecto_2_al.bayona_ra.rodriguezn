@@ -2,6 +2,7 @@ package model.logic;
 
 
 import model.data_structures.DoublyLinkedList;
+import model.data_structures.Queue;
 import model.value_objects.RoadNode;
 import model.value_objects.TravelArea;
 import model.value_objects.TravelTime;
@@ -51,5 +52,50 @@ public class MVCModel {
 
 
     }
+    
+    public Queue A1(int num) {
+    	return null;
+    }
+    
+    public Queue A2(double latitud, double longitud) {
+    	return null;
+    }
+
+    public Queue A3(double latitud, double longitud,int num) {
+    	return null;
+    }
+
+    public Queue B1(int num) {
+    	return null;
+    }
+
+
+    public Queue B2(double latitud, double longitud) {
+    	return null;
+    }
+
+
+    public Queue B3(double latitud, double longitud, int num) {
+    	return null;
+    }
+
+
+    public Queue C1(int id,int hour) {
+    	return null;
+    }
+
+    public Queue C2(int id,int hourIni,int hourFin) {
+    	return null;
+    }
+
+    public Queue C3(int num) {
+    	return null;
+    }
+
+    public int[] C4() {
+    	int[] ans = null;
+    	return ans;
+    }
+
 
 }
