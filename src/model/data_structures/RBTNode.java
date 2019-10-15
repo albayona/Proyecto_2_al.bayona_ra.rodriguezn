@@ -182,12 +182,12 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 
 	public void put(RBTNode<Key, Value> nuevo) {
 
-		int compare = key.compareTo(nuevo.getKey());
+		int comparacion = key.compareTo(nuevo.getKey());
 
-		if(compare == 0) { // son iguales
+		if(comparacion == 0) { // son iguales
 			this.value = nuevo.value; //se reemplaza el valor por el nuevo
 		}
-		else if(compare < 0) { // la llave que se pasa por parametro es mayor
+		else if(comparacion < 0) { // la llave que se pasa por parametro es mayor
 			if(rightNode != null) {
 				rightNode.put(nuevo);
 			}
@@ -195,7 +195,7 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 				this.rightNode = nuevo;
 			}
 		}
-		else if(compare > 0) {// la llave que se pasa por parametro es menor
+		else if(comparacion > 0) {// la llave que se pasa por parametro es menor
 			if(leftNode != null) {
 				leftNode.put(nuevo);
 			}
@@ -431,55 +431,55 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 		return (rightNode == null) ? this.key: rightNode.max();
 	}
 
-	public boolean hasParentsLargerThanLeftChild() {
+	public boolean padresMayoresQueHijoIzquierdo() {
 		if(leftNode != null && key.compareTo(leftNode.key) < 0) {
 			return false;
 		}
 		else {
 			if(leftNode != null && rightNode == null)
-				return leftNode.hasParentsLargerThanLeftChild();
+				return leftNode.padresMayoresQueHijoIzquierdo();
 			else if(rightNode != null && leftNode == null)
-				return rightNode.hasParentsLargerThanLeftChild();
+				return rightNode.padresMayoresQueHijoIzquierdo();
 			else if(rightNode == null && leftNode == null)
 				return true;
 			else
-				return leftNode.hasParentsLargerThanLeftChild() && rightNode.hasParentsLargerThanLeftChild();
+				return leftNode.padresMayoresQueHijoIzquierdo() && rightNode.padresMayoresQueHijoIzquierdo();
 		}
 	}
 
-	public boolean hasParentsSmallerThanRightChild() {
+	public boolean padresMenoresQueHijoDerecho() {
 		if(rightNode != null && key.compareTo(rightNode.key) > 0) {
 			return false;
 		}
 		else {
 			if(leftNode != null && rightNode == null)
-				return leftNode.hasParentsSmallerThanRightChild();
+				return leftNode.padresMenoresQueHijoDerecho();
 			else if(rightNode != null && leftNode == null)
-				return rightNode.hasParentsSmallerThanRightChild();
+				return rightNode.padresMenoresQueHijoDerecho();
 			else if(rightNode == null && leftNode == null)
 				return true;
 			else
-				return leftNode.hasParentsSmallerThanRightChild() && rightNode.hasParentsSmallerThanRightChild();
+				return leftNode.padresMenoresQueHijoDerecho() && rightNode.padresMenoresQueHijoDerecho();
 		}
 	}
 
-	public boolean rightChildIsRed() {
+	public boolean hijoDerechoNoEsRojo() {
 		if(rightNode != null && rightNode.isRed()) {
 			return false;
 		}
 		else {
 			if(leftNode != null && rightNode == null)
-				return leftNode.rightChildIsRed();
+				return leftNode.hijoDerechoNoEsRojo();
 			else if(rightNode != null && leftNode == null)
-				return rightNode.rightChildIsRed();
+				return rightNode.hijoDerechoNoEsRojo();
 			else if(rightNode == null && leftNode == null)
 				return true;
 			else
-				return leftNode.rightChildIsRed() && rightNode.rightChildIsRed();
+				return leftNode.hijoDerechoNoEsRojo() && rightNode.hijoDerechoNoEsRojo();
 		}
 	}
 
-	public boolean noRedParentAndChild() {
+	public boolean noHayPadreNiHijoRojoSeguidos() {
 		if(this.isRed()) {
 
 			if(rightNode != null && rightNode.isRed())
@@ -489,13 +489,13 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 		}
 		else {
 			if(leftNode != null && rightNode == null)
-				return leftNode.noRedParentAndChild();
+				return leftNode.noHayPadreNiHijoRojoSeguidos();
 			else if(rightNode != null && leftNode == null)
-				return rightNode.noRedParentAndChild();
+				return rightNode.noHayPadreNiHijoRojoSeguidos();
 			else if(rightNode == null && leftNode == null)
 				return true;
 			else
-				return leftNode.noRedParentAndChild() && rightNode.noRedParentAndChild();
+				return leftNode.noHayPadreNiHijoRojoSeguidos() && rightNode.noHayPadreNiHijoRojoSeguidos();
 		}
 		return true;
 	}
