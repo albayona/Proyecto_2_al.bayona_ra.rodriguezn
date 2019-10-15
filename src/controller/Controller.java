@@ -37,6 +37,8 @@ public class Controller {
             switch (option) {
                 case 1:
 
+                    model.loadData();
+
                     System.out.println("Para el trimestre " + 1 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesDataByTrimester(1).size() + "\n");
                     System.out.println("Para el trimestre " + 2 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesDataByTrimester(2).size() + "\n");
                     System.out.println("Para el primer semestre del 2018 se leyeron las siguientes cantidades de zonas de viaje: " + model.areasData().size() + "\n");
