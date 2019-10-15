@@ -50,11 +50,29 @@ public class DoublyLinkedList<E> implements Iterable<E>{
     public E last() {
         return last.value;
     }
+    
+    public E first() {
+        return first.value;
+    }
 
     public boolean isEmpty() {
         return first == null;
     }
 
+	public E getElement(int index) {
+		if(index < 0 || index >= size)  
+		{
+			throw new IndexOutOfBoundsException("Se está pidiendo el indice: " + index + " y el tamaño de la lista es de " + size);
+		}
+		Node<E> actual = first; 
+		int posActual = 0; 
+		while(actual != null && posActual < index)
+		{
+			actual = actual.next;
+			posActual ++; 
+		}
+		return actual.value;
+	}
 
     private class ListIterador implements Iterator<E> {
 
@@ -138,6 +156,44 @@ public class DoublyLinkedList<E> implements Iterable<E>{
         }
 
     }
+    
+    
+	public E delete(int index) {
+		E deleted = null;
+		Node<E> actual = (Node<E>) this.first;
+
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("Se está pidiendo el indice: " + index + " y el tamaño de la lista es de " + size);
+		}
+
+		if(index == 0) {
+			deleted = first.value;
+			first = first.next;
+			this.size --;
+		}
+		else {
+			int cont = 0;
+			while(cont + 1 < index){
+				actual = (Node<E>) actual.next;
+				cont++;
+			}
+			deleted = actual.next.value;
+			actual.next  = actual.next.next;
+
+			if(actual.next == null) {
+				last = actual;
+			}
+			else {
+				Node<E> c =  actual.next;
+				c.previous = actual;
+			}
+			this.size --;
+
+		}
+		return deleted;
+	}
+
+    
 
     public void addBeforeCurrent(E val){
 
