@@ -37,18 +37,10 @@ public class Controller {
             switch (option) {
                 case 1:
 
-                    try {
-                        System.out.println("\nIngresar el trimestre: ");
-                        trimester = reader.nextInt();
-                    } catch (Exception e) {
+                    model.loadData();
 
-                        System.out.print("Debe ingresar un n�mero.\n");
-                    }
-
-
-                    model.loadData(trimester);
-
-                    System.out.println("Para el trimestre " + trimester + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesData().size() + "\n");
+                    System.out.println("Para el trimestre " + 1 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesDataByTrimester(1).size() + "\n");
+                    System.out.println("Para el trimestre " + 2 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesDataByTrimester(2).size() + "\n");
                     System.out.println("Para el primer semestre del 2018 se leyeron las siguientes cantidades de zonas de viaje: " + model.areasData().size() + "\n");
                     System.out.println("Para el primer semestre del 2018 se leyeron las siguientes cantidades de nodos en la red vial: " + model.roadNodesData().size() + "\n");
 

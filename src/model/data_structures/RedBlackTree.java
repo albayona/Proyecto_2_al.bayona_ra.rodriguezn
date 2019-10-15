@@ -33,7 +33,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	//--------------------------------------------------------
 
 	/**
-	 * Inserta un nuevo elemento al árbol
+	 * Inserta un nuevo elemento al ï¿½rbol
 	 * @param pKey La llave asociada al valor que se desea insertar
 	 * @param pVal El valor que se desea insertar
 	 */
@@ -68,7 +68,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 				throw new Exception("No existe ningun valor asociado a esa llave");
 		}
 		else {
-			throw new Exception("El árbol está vacío");
+			throw new Exception("El ï¿½rbol estï¿½ vacï¿½o");
 		}
 	}
 
@@ -78,8 +78,8 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	//--------------------------------------------------------
 
 	/**
-	 * Indica si el árbol está vacio, si el nodo raiz es null
-	 * @return true si está vacío, false de lo contrario
+	 * Indica si el ï¿½rbol estï¿½ vacio, si el nodo raiz es null
+	 * @return true si estï¿½ vacï¿½o, false de lo contrario
 	 */
 	public boolean isEmpty() {
 		return root == null;
@@ -88,7 +88,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	/**
 	 * Retorna el elemento asociado a la llave que se pasa por parametros
 	 * @param llaveBuscada llava asociada al vlor buscado
-	 * @return Value: el valor o buscado o null si no existe o el arbol está vacio
+	 * @return Value: el valor o buscado o null si no existe o el arbol estï¿½ vacio
 	 */
 	public Value get(Key llaveBuscada) {
 		if(root != null) {
@@ -98,7 +98,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 * Indica si el árbol contiene la llave que se pasa por parametro
+	 * Indica si el ï¿½rbol contiene la llave que se pasa por parametro
 	 * @param key Llave que se desea buscar
 	 * @return true si existe, false de lo contrario
 	 */
@@ -107,9 +107,9 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 * Retorna la altura del árbol definida como la altura de la rama más alta 
-	 * (aquella que tenga mayor número de enlaces desde la raíz a una hoja). 
-	 * @return int : la altura del árbol
+	 * Retorna la altura del ï¿½rbol definida como la altura de la rama mï¿½s alta 
+	 * (aquella que tenga mayor nï¿½mero de enlaces desde la raï¿½z a una hoja). 
+	 * @return int : la altura del ï¿½rbol
 	 */
 	public int height() {
 		return root == null ? 0 : root.height();
@@ -117,7 +117,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 	/**
 	 * Retorna la altura del camino desde la raiz para llegar a la llave key (si la llave existe). 
-	 * @return int : la altura del camino desde la raiz, –1 si la llave No existe 
+	 * @return int : la altura del camino desde la raiz, ï¿½1 si la llave No existe 
 	 */
 	public int getHeight(Key k) {
 		int height = 0;
@@ -131,16 +131,16 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 * Retornar el número de parejas [llave,Valor] del árbol 
-	 * @return int : el tamaño del arbol
+	 * Retornar el nï¿½mero de parejas [llave,Valor] del ï¿½rbol 
+	 * @return int : el tamaï¿½o del arbol
 	 */
 	public int size() {
 		return root == null ? 0 : root.getSize();
 	}
 
 	/**
-	 * Retorna todas llaves del árbol como un iterador
-	 * @return Iterator<Key> : iterador de todas las llaves del árbol
+	 * Retorna todas llaves del ï¿½rbol como un iterador
+	 * @return Iterator<Key> : iterador de todas las llaves del ï¿½rbol
 	 */
 	public Iterator<Key> keysIterator(){
 		DoublyLinkedList<Key> keys = new DoublyLinkedList<Key>();
@@ -151,8 +151,8 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 * Retorna todas llaves del árbol como un iterador
-	 * @return Iterator<Key> : iterador de todas las llaves del árbol
+	 * Retorna todas llaves del ï¿½rbol como un iterador
+	 * @return Iterator<Key> : iterador de todas las llaves del ï¿½rbol
 	 */
 	public Iterator<Value> valuesIterator(){
 		ArrayList<Value> values = new ArrayList<Value>();
@@ -164,8 +164,8 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 
 	/**
-	 * Retorna todos los valores V en el árbol que estén asociados al rango de llaves dado. 
-	 * Por eficiencia, debe intentarse No recorrer todo el árbol. 
+	 * Retorna todos los valores V en el ï¿½rbol que estï¿½n asociados al rango de llaves dado. 
+	 * Por eficiencia, debe intentarse No recorrer todo el ï¿½rbol. 
 	 * @param init Llave inicia del rango
 	 * @param end Llave final del rango
 	 * @return Iterator<Key> : iterador de los valores que se encuentran en el rango dado
@@ -179,8 +179,8 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	}
 
 	/**
-	 * Retorna todas las llaves K en el árbol que se encuentran en el rango de llaves dado. 	 
-	 * Por eficiencia, debe intentarse No recorrer todo el árbol. 
+	 * Retorna todas las llaves K en el ï¿½rbol que se encuentran en el rango de llaves dado. 	 
+	 * Por eficiencia, debe intentarse No recorrer todo el ï¿½rbol. 
 	 * @param init Llave inicia del rango
 	 * @param end Llave final del rango
 	 * @return Iterator<Key> : iterador de las llaves que se encuentran en el rango dado
@@ -195,7 +195,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 	/**
 	 * Retorna el valor asociado a la llave menor
-	 * @return Value : el valor asociado a la llave menor, o null si el árbol está vacío
+	 * @return Value : el valor asociado a la llave menor, o null si el ï¿½rbol estï¿½ vacï¿½o
 	 */
 	public Value getMinValue() {
 		return root == null ? null: root.getMin().getVal();
@@ -203,30 +203,30 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 
 	/**
 	 * Retorna el valor asociado a la llave mayor
-	 * @return Value : el valor asociado a la llave mayor, o null si el árbol está vacío
+	 * @return Value : el valor asociado a la llave mayor, o null si el ï¿½rbol estï¿½ vacï¿½o
 	 */
 	public Value getMaxValue() {
 		return root == null ? null: root.getMax().getVal();
 	}
 
 	/**
-	 * Retorna la llave más pequeña del árbol. 
-	 * @return Key la llave menor del árbol o null si el árbol está vacío 
+	 * Retorna la llave mï¿½s pequeï¿½a del ï¿½rbol. 
+	 * @return Key la llave menor del ï¿½rbol o null si el ï¿½rbol estï¿½ vacï¿½o 
 	 */
 	public Key min() {
 		return root == null ? null: root.min();
 	}
 
 	/**
-	 * Retorna la llave más grande del árbol. 
-	 * @return Key la llave más grande del árbol o null si el árbol está vacío 
+	 * Retorna la llave mï¿½s grande del ï¿½rbol. 
+	 * @return Key la llave mï¿½s grande del ï¿½rbol o null si el ï¿½rbol estï¿½ vacï¿½o 
 	 */
 	public Key max() {
 		return root == null ? null: root.max();
 	}
 
 	/**
-	 * Valida si el árbol es Binario Ordenado y está balanceado RojoNegro a la izquierda. 
+	 * Valida si el ï¿½rbol es Binario Ordenado y estï¿½ balanceado RojoNegro a la izquierda. 
 	 * @return true si cumple con los requerimientos, false de lo contrario
 	 */
 	public boolean check() {
@@ -240,24 +240,24 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
 	//--------------------------------------------------------
 
 	/**
-	 * Valida que la llave de cada nodo sea mayor que cualquiera de su subárbol izquierdo.
+	 * Valida que la llave de cada nodo sea mayor que cualquiera de su subï¿½rbol izquierdo.
 	 * @return true si cumple con los requerimientos, false de lo contrario 
 	 */
 	public boolean padresMayoresQueHijoIzquierdo() {
-		return root == null ? true : root.padresMayoresQueHijoIzquierdo() ;
+		return root == null ? true : root.hasParentsLargerThanLeftChild() ;
 	}
 
 	public boolean padresMenoresQueHijoDerecho() {
-		return root == null ? true : root.padresMenoresQueHijoDerecho() ;
+		return root == null ? true : root.hasParentsSmallerThanRightChild() ;
 	}
 
 	public boolean hijoDerechoNoEsRojo() {
-		return root == null ? true : root.hijoDerechoNoEsRojo() ;
+		return root == null ? true : root.rightChildIsRed() ;
 
 	}
 
 	public boolean noHayPadreNiHijoRojoSeguidos() {
-		return root == null ? true : root.noHayPadreNiHijoRojoSeguidos() ;
+		return root == null ? true : root.noRedParentAndChild() ;
 
 	}
 

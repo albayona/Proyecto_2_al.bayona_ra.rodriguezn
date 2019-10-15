@@ -13,13 +13,15 @@ public class MVCModel {
 
     private DoublyLinkedList<TravelArea> areasData;
     private DoublyLinkedList<RoadNode> roadNodesData;
-    private DoublyLinkedList<TravelTime> travelTimesData;
+    private DoublyLinkedList<TravelTime> travelTimesData1;
+    private DoublyLinkedList<TravelTime> travelTimesData2;
 
 
     public MVCModel() {
         areasData = new DoublyLinkedList<>();
         roadNodesData = new DoublyLinkedList<>();
-        travelTimesData = new DoublyLinkedList<>();
+        travelTimesData1 = new DoublyLinkedList<>();
+        travelTimesData2 = new DoublyLinkedList<>();
     }
 
     public DoublyLinkedList<TravelArea> areasData() {
@@ -30,26 +32,22 @@ public class MVCModel {
         return roadNodesData;
     }
 
-    public DoublyLinkedList<TravelTime> travelTimesData() {
-        return travelTimesData;
+    public DoublyLinkedList<TravelTime> travelTimesDataByTrimester(int trimester) {
+
+        if (trimester == 1) return travelTimesData1;
+        else if(trimester == 2) return travelTimesData2;
+
+        return null;
     }
 
-    public void loadData(int trimester) {
+    public void loadData() {
 
         DataLoader d = new DataLoader();
 
         d.loadTravelAreas(areasData);
         d.loadRoadNodes(roadNodesData);
-        d.loadTravelTimes(travelTimesData, trimester);
-    }
-
-    public static void main(String[] args)
-    {
-        MVCModel model = new MVCModel();
-        model.loadData(2);
-        model.areasData();
-
-
+        d.loadTravelTimes(travelTimesData1, 1);
+        d.loadTravelTimes(travelTimesData2, 2);
     }
 
 }
