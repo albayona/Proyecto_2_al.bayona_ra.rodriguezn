@@ -40,7 +40,7 @@ public class DataLoader {
 
                 String[] params = (String[]) iter.next();
 
-                data.addLast(new TravelTime(Integer.parseInt(params[0]), Integer.parseInt(params[1]),Integer.parseInt(params[2]), Double.parseDouble(params[3]),Double.parseDouble(params[4]), Double.parseDouble(params[5]), Double.parseDouble(params[6])));
+                data.addLast(new TravelTime(Integer.parseInt(params[0]), Integer.parseInt(params[1]),Integer.parseInt(params[2]), Double.parseDouble(params[3]),Double.parseDouble(params[4]) ));
             }
 
 

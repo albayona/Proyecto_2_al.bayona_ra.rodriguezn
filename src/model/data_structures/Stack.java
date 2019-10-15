@@ -59,7 +59,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @return el elemento agregado mas recientemente
 	 */
 	public T pop() {
-		return list.removeLast(); //retorna el elemento que elimin� en la primera posicion (0)
+		return list.removeFirst(); //retorna el elemento que elimin� en la primera posicion (0)
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Stack<T extends Comparable<T>> implements Iterable<T>{
 	 * @param t el nuevo elemento que se va ha agregar
 	 */
 	public void push(T t) {
-		list.addLast(t); //El metodo add de DoublyLinkedList siempre a�ade el elemento al inicio de la lista
+		list.addFirst(t); //El metodo add de DoublyLinkedList siempre a�ade el elemento al inicio de la lista
 	}
 
 }
