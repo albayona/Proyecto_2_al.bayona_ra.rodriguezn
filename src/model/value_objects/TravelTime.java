@@ -2,64 +2,47 @@ package model.value_objects;
 
 public class TravelTime {
 
-    private int idOrigen;
+    private int idSource;
 
-    private int idDestino;
+    private int idDestine;
 
-    private int indicadorTemporal;
+    private int hour;
 
-    private double tiempoPromedio;
+    private double meanTime;
 
-    private double desviacionEstandar;
+    private double standardDeviation;
 
-    private double promedioGeometrico;
 
-    private double desviacionGeometrica;
-
-    public TravelTime(int idOrigen, int idDestino, int indicadorTemporal, double tiempoPromedio, double desviacionEstandar, double promedioGeometrico, double desviacionGeometrica) {
-        this.idOrigen = idOrigen;
-        this.idDestino = idDestino;
-        this.indicadorTemporal = indicadorTemporal;
-        this.tiempoPromedio = tiempoPromedio;
-        this.desviacionEstandar = desviacionEstandar;
-        this.promedioGeometrico = promedioGeometrico;
-        this.desviacionGeometrica = desviacionGeometrica;
+    public TravelTime(int idSource, int idDestine, int hour, double meanTime, double standardDeviation) {
+        this.idSource = idSource;
+        this.idDestine = idDestine;
+        this.hour = hour;
+        this.meanTime = meanTime;
+        this.standardDeviation = standardDeviation;
     }
 
-    public int darIndicadorTemporal() {
-        return indicadorTemporal;
-    }
-    public int darIdOrigen()
-    {
-    	return idOrigen;
+    public int getIdSource() {
+        return idSource;
     }
 
-    public int darIdDestino() {
-        return idDestino;
+    public int getIdDestine() {
+        return idDestine;
     }
 
-    public double darTiempoPromedio() {
-        return tiempoPromedio;
+    public int getHour() {
+        return hour;
     }
 
-    public double darDesviacionEstandar() {
-        return desviacionEstandar;
+    public double getMeanTime() {
+        return meanTime;
     }
 
-    public double darPromedioGeometrico() {
-        return promedioGeometrico;
-    }
-
-    public double darDesviacionGeometrica() {
-        return desviacionGeometrica;
-    }
-
-    public int compareTo(TravelTime v){
-        return 0;
+    public double getStandardDeviation() {
+        return standardDeviation;
     }
 
     public String toString(){
 
-        return "" + tiempoPromedio;
+        return "" + meanTime;
     }
 }
