@@ -125,26 +125,26 @@ public class Controller {
                     break;
 
 
-            case "A3":
-                System.out.println(" \n Ingresar tiempo inferior: \n");
+                case "A3":
+                    System.out.println(" \n Ingresar tiempo inferior: \n");
 
-                try {
-                    lo = reader.nextDouble();
-                } catch (Exception e) {
-                    System.out.println("Debe ingresar un n�mero");
-                }
+                    try {
+                        lo = reader.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
 
-                System.out.println(" \n Ingresar tiempo superior: \n");
+                    System.out.println(" \n Ingresar tiempo superior: \n");
 
-                try {
-                    hi = reader.nextDouble();
-                } catch (Exception e) {
-                    System.out.println("Debe ingresar un n�mero");
-                }
+                    try {
+                        hi = reader.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
 
-                printListA3(model.A3(lo,hi));
+                    printListA3(model.A3(lo,hi));
 
-                break;
+                    break;
 
                 case "C3":
 
@@ -156,7 +156,7 @@ public class Controller {
                         System.out.println("Debe ingresar un n�mero");
                     }
 
-                   printArrC3(model.C3(N));
+                    printArrC3(model.C3(N));
 
                     break;
 
