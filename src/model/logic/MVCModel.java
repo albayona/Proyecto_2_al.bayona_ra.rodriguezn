@@ -121,7 +121,7 @@ public class MVCModel {
         return AManager.A2(latitute, longitute);
     }
 
-    public DoublyLinkedList<TravelTime> A3(double lo, double hi){
+    public TravelTime[] A3(double lo, double hi){
         return AManager.A3(lo, hi);
     }
 
