@@ -22,6 +22,7 @@ public class MVCView
 		System.out.println("C1. Requerimiento 1 de la parte C");
 		System.out.println("C2. Requerimiento 2 de la parte C");
 		System.out.println("C3. Requerimiento 3 de la parte C");
+		System.out.println("C4. Requerimiento 4 de la parte C");
 
 	}
 
