@@ -80,19 +80,21 @@ public class MVCModel {
         AManager.loadA2Data(areasData);
         
         CManager.loadC3Data(areasData);
+
         BManager.loadB1Data(areasData);
         
         areasData = null;
         BManager.loadB2Data(roadNodesData);
+        AManager.loadA3Data(travelTimesByMonth1);
+        CManager.loadC4Data(travelTimesByDay1, travelTimesByDay2);
+
         roadNodesData = null;
         
         BManager.loadB3Data(travelTimesByMonth1);
-        AManager.loadA3Data(travelTimesByMonth1);
         travelTimesByMonth1 = null;
 
         CManager.loadC1Data(travelTimesByDay1);
         CManager.loadC2Data(travelTimesByDay1);
-        CManager.loadC4Data(travelTimesByDay1, travelTimesByDay2);
         travelTimesByDay1 = null;
         travelTimesByDay2 = null;
 

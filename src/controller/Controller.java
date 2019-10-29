@@ -56,12 +56,14 @@ public class Controller {
 
                     model.loadData();
 
-                    System.out.println("Para el trimestre " + 1 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesByDay(1).size() + "\n");
-                    System.out.println("Para el trimestre " + 2 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesByDay(2).size() + "\n");
-                    System.out.println("Para el primer semestre del 2018 se leyeron las siguientes cantidades de zonas de viaje: " + model.areasData().size() + "\n");
-                    System.out.println("Para el primer semestre del 2018 se leyeron las siguientes cantidades de nodos en la red vial: " + model.roadNodesData().size() + "\n");
+                   String l1 = "Para el trimestre " + 1 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesByDay(1).size() + "\n";
+                    l1 += "Para el trimestre " + 2 + " del 2018 se leyeron las siguientes cantidades de tiempos de viajes: " + model.travelTimesByDay(2).size() + "\n";
+                    l1 += "Para el primer semestre del 2018 se leyeron las siguientes cantidades de zonas de viaje: " + model.areasData().size() + "\n";
+                    l1 += "Para el primer semestre del 2018 se leyeron las siguientes cantidades de nodos en la red vial: " + model.roadNodesData().size() + "\n";
 
                     model.loadRequirementsData();
+
+                    System.out.println(l1);
                     break;
 
                 case "A1":
@@ -164,6 +166,7 @@ public class Controller {
                 case "B3":
                     System.out.println(" \n Ingresar desviacion inferior: \n");
 
+
                     try {
                         lo = reader.nextDouble();
                     } catch (Exception e) {
@@ -243,7 +246,7 @@ public class Controller {
                         System.out.println("Debe ingresar un n�mero");
                     }
 
-                   printArrC3(model.C3(N));
+                    printArrC3(model.C3(N));
 
                     break;
 
