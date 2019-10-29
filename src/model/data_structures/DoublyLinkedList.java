@@ -62,7 +62,7 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 	public E getElement(int index) {
 		if(index < 0 || index >= size)  
 		{
-			throw new IndexOutOfBoundsException("Se está pidiendo el indice: " + index + " y el tamaño de la lista es de " + size);
+			throw new IndexOutOfBoundsException("Se estï¿½ pidiendo el indice: " + index + " y el tamaï¿½o de la lista es de " + size);
 		}
 		Node<E> actual = first; 
 		int posActual = 0; 
@@ -163,7 +163,7 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 		Node<E> actual = (Node<E>) this.first;
 
 		if(index < 0 || index >= size) {
-			throw new IndexOutOfBoundsException("Se está pidiendo el indice: " + index + " y el tamaño de la lista es de " + size);
+			throw new IndexOutOfBoundsException("Se estï¿½ pidiendo el indice: " + index + " y el tamaï¿½o de la lista es de " + size);
 		}
 
 		if(index == 0) {
@@ -327,6 +327,19 @@ public class DoublyLinkedList<E> implements Iterable<E>{
         }
 
         return first;
+    }
+
+    public E[] toArray() {
+
+        E[] items = (E[]) (new Object[size]);
+
+        int i = 0;
+        for (E val : this){
+
+            items[i] = val;
+            i++;
+        }
+        return items;
     }
 
 
