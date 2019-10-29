@@ -119,7 +119,7 @@ public class Controller {
                         System.out.println("Debe ingresar un n�mero");
                     }
 
-                    printListA3(model.A3(lo,hi));
+                    printArrA3(model.A3(lo,hi));
 
                     break;
                     
@@ -181,7 +181,7 @@ public class Controller {
                         System.out.println("Debe ingresar un n�mero");
                     }
 
-                    printListB3(model.A3(lo,hi));
+                    printListB3(model.B3(lo,hi));
 
                     break;
                 
@@ -338,13 +338,13 @@ public class Controller {
         }
     }
 
-    private void printListA3(DoublyLinkedList<TravelTime> lista) {
+    private void printArrA3(TravelTime[] arr) {
         System.out.println("------------------------------------------------------------");
         System.out.printf("%10s %10s %10s %16s", "Origen", "Destino", "Mes", "Tiempo promedio");
         System.out.println();
         System.out.println("------------------------------------------------------------");
 
-        for (TravelTime node: lista) {
+        for (TravelTime node: arr) {
 
             System.out.format("%10s %10s %10s %16s", node.getIdSource(), node.getIdDestine(), node.getTimeIndicator(), node.getMeanTime());
             System.out.println();
