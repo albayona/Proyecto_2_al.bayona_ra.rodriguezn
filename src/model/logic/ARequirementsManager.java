@@ -166,13 +166,25 @@ public class ARequirementsManager {
 
         //crack
 
-        TravelTime[] times = wanted.toArray();
+        TravelTime[] times = toArray(wanted);
         MergeSort.mergeSort(times, new TravelDestineComparator());
         MergeSort.mergeSort(times, new TravelSourceComparator());
 
-        return times;
+        return  times;
 
     }
+
+    private TravelTime[] toArray(DoublyLinkedList<TravelTime> list) {
+
+        TravelTime[] arr = new TravelTime[list.size()];
+        int i = 0;
+        for (TravelTime val : list){
+            arr[i++] = val;
+        }
+
+        return arr;
+    }
+
 
     private static class TravelSourceComparator implements Comparator<Object> {
 
