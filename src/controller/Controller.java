@@ -223,10 +223,10 @@ public class Controller {
 
 
     private void printListA2(DoublyLinkedList<Pair<GeoCoordinate, String>> lista) {
-        System.out.println("---------------------------------------------------");
+        System.out.println("-------------------------------------------------------------");
         System.out.printf("%15s %15s %25s", "Longitud", "Latitud", "Zona ");
         System.out.println();
-        System.out.println("---------------------------------------------------");
+        System.out.println("-------------------------------------------------------------");
 
         if (lista != null) {
             for (Pair<GeoCoordinate, String> coordinate : lista) {
@@ -251,15 +251,15 @@ public class Controller {
 
 
     private void printArrC3(TravelArea[] arr) {
-        System.out.println("-----------------------------------------------");
-        System.out.printf("%10s %30s %10s", "#","Nombre ", "Cantidad de nodos");
+        System.out.println("----------------------------------------------------------------");
+        System.out.printf("%10s %30s %16s", "#","Nombre ", "Cantidad de nodos");
         System.out.println();
-        System.out.println("-----------------------------------------------");
+        System.out.println("----------------------------------------------------------------");
 
         int i =0;
         for (TravelArea area: arr) {
             i++;
-            System.out.format("%10s %30s %10s",i, area.getName(), area.getFrontier().length);
+            System.out.format("%10s %30s %16s",i, area.getName(), area.getFrontier().length);
             System.out.println();
         }
     }
