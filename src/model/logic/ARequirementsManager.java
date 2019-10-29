@@ -1,11 +1,7 @@
 package model.logic;
 
 import javafx.util.Pair;
-import model.data_structures.DoublyLinkedList;
-import model.data_structures.HashTable;
-import model.data_structures.MaxHeap;
-import model.data_structures.RedBlackTree;
-import model.value_objects.RoadNode;
+import model.data_structures.*;
 import model.value_objects.TravelArea;
 import model.value_objects.TravelTime;
 import model.value_objects.GeoCoordinate;
@@ -154,7 +150,7 @@ public class ARequirementsManager {
 
 
 
-    public DoublyLinkedList<TravelTime> A3(double lo, double hi) {
+    public TravelTime[] A3(double lo, double hi) {
 
 
         Iterator<TravelTime> iter = A3Tree.valuesInRange(lo, hi);
@@ -168,30 +164,32 @@ public class ARequirementsManager {
             wanted.addLast(temp);
         }
 
-        //crack 
-        wanted.mergeSort(new TravelDestineComparator());
-        wanted.mergeSort(new TravelSourceComparator());
+        //crack
 
-        return wanted;
+        TravelTime[] times = wanted.toArray();
+        MergeSort.mergeSort(times, new TravelDestineComparator());
+        MergeSort.mergeSort(times, new TravelSourceComparator());
+
+        return times;
 
     }
 
-    private class TravelSourceComparator implements Comparator<TravelTime> {
+    private static class TravelSourceComparator implements Comparator<Object> {
 
-        public int compare(TravelTime o1, TravelTime o2) {
+        public int compare(Object o1, Object o2) {
 
-            if (o1.getIdSource() < o2.getIdSource()) return -1;
-            if (o1.getIdSource() > o2.getIdSource()) return 1;
+            if (((TravelTime)o1).getIdSource() < ((TravelTime)o2).getIdSource()) return -1;
+            if (((TravelTime)o1).getIdSource() > ((TravelTime)o2).getIdSource()) return 1;
             else return 0;
         }
     }
 
-    private class TravelDestineComparator implements Comparator<TravelTime> {
+    private static class TravelDestineComparator implements Comparator<Object> {
 
-        public int compare(TravelTime o1, TravelTime o2) {
+        public int compare(Object o1, Object o2) {
 
-            if (o1.getIdDestine() < o2.getIdDestine()) return -1;
-            if (o1.getIdDestine() > o2.getIdDestine()) return 1;
+            if (((TravelTime)o1).getIdDestine() < ((TravelTime)o2).getIdDestine()) return -1;
+            if (((TravelTime)o1).getIdDestine() > ((TravelTime)o2).getIdDestine()) return 1;
             else return 0;
         }
     }
