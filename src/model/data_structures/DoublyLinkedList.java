@@ -2,6 +2,7 @@ package model.data_structures;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 
 public class DoublyLinkedList<E> implements Iterable<E>{
@@ -329,18 +330,18 @@ public class DoublyLinkedList<E> implements Iterable<E>{
         return first;
     }
 
-    public E[] toArray() {
+    public Object[] toArray() {
 
-        E[] items = (E[]) (new Object[size]);
+        E[] items = (E[]) new Object[size];
 
         int i = 0;
         for (E val : this){
-
-            items[i] = val;
-            i++;
+            items[i++] = val;
         }
+
         return items;
     }
+
 
 
 }
