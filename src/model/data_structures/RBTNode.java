@@ -95,10 +95,10 @@ public class RBTNode<Key extends Comparable<Key>, Value> {
 				if(leftNode != null)
 					leftNode.valuesInRange(values, init, end);;
 		}
-		if(inferior > 0 && rightNode != null) { // la llave es menor al inferior, se va por la derecha
+		if(inferior >= 0 && rightNode != null) { // la llave es menor al inferior, se va por la derecha
 			rightNode.valuesInRange(values, init, end);;
 		}
-		if(superior < 0 && leftNode != null){ // la llave es mayor al superior, se va por la derecha
+		if(superior <= 0 && leftNode != null){ // la llave es mayor al superior, se va por la derecha
 			leftNode.valuesInRange(values, init, end);
 		}
 	}

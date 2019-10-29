@@ -168,6 +168,7 @@ public class ARequirementsManager {
             wanted.addLast(temp);
         }
 
+        //crack 
         wanted.mergeSort(new TravelDestineComparator());
         wanted.mergeSort(new TravelSourceComparator());
 
@@ -177,7 +178,6 @@ public class ARequirementsManager {
 
     private class TravelSourceComparator implements Comparator<TravelTime> {
 
-        @Override
         public int compare(TravelTime o1, TravelTime o2) {
 
             if (o1.getIdSource() < o2.getIdSource()) return -1;
@@ -188,7 +188,6 @@ public class ARequirementsManager {
 
     private class TravelDestineComparator implements Comparator<TravelTime> {
 
-        @Override
         public int compare(TravelTime o1, TravelTime o2) {
 
             if (o1.getIdDestine() < o2.getIdDestine()) return -1;

@@ -7,6 +7,8 @@ public class TravelArea {
    private  double area;
    private int ID;
    private GeoCoordinate[] frontier;
+   private double maxLatitud;
+   private double maxLongitud;
 
 
     public TravelArea(String name, double perimeter, double area, int ID, GeoCoordinate[] frontier) {
@@ -15,6 +17,16 @@ public class TravelArea {
         this.area = area;
         this.ID = ID;
         this.frontier = frontier;
+        maxLongitud = frontier[0].getLongitude();
+        
+        double max = frontier[0].getLatitude();
+        for(int i=1;i<frontier.length;i++){
+        	if(max < frontier[i].getLatitude() ){
+        		max = frontier[i].getLatitude();
+        		maxLongitud = frontier[i].getLongitude();
+        	}
+        }
+        maxLatitud = max;
     }
 
     public String getName() {
@@ -35,5 +47,13 @@ public class TravelArea {
 
     public GeoCoordinate[] getFrontier() {
         return frontier;
+    }
+    
+    public double getMaxLatitude(){
+    	return maxLatitud;
+    }
+    
+    public double getMaxLongitud(){
+    	return maxLongitud;
     }
 }

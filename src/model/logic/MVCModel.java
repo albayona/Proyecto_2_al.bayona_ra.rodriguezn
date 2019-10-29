@@ -75,21 +75,26 @@ public class MVCModel {
 
     public void loadRequirementsData(){
         AManager.loadA1Data(areasData);
+        
+        //TODO arreglar creo
         AManager.loadA2Data(areasData);
+        
         CManager.loadC3Data(areasData);
+        BManager.loadB1Data(areasData);
+        
         areasData = null;
         BManager.loadB2Data(roadNodesData);
         roadNodesData = null;
+        
+        BManager.loadB3Data(travelTimesByMonth1);
         AManager.loadA3Data(travelTimesByMonth1);
         travelTimesByMonth1 = null;
 
+        CManager.loadC1Data(travelTimesByDay1);
+        CManager.loadC2Data(travelTimesByDay1);
         CManager.loadC4Data(travelTimesByDay1, travelTimesByDay2);
         travelTimesByDay1 = null;
         travelTimesByDay2 = null;
-
-
-
-
 
     }
 
@@ -119,8 +124,8 @@ public class MVCModel {
     }
 
 
-    public Queue B1(int num) {
-    	return null;
+    public TravelArea[] B1(int num) {
+    	return BManager.B1(num);
     }
 
 
@@ -128,17 +133,17 @@ public class MVCModel {
         return BManager.B2( latitute,  longitute);
     }
 
-    public Queue B3(double latitud, double longitud, int num) {
-    	return null;
+    public DoublyLinkedList<TravelTime> B3(double inf, double sup) {
+    	return BManager.B3(inf, sup);
     }
 
 
-    public Queue C1(int id,int hour) {
-    	return null;
+    public DoublyLinkedList<TravelTime> C1(int id,int hour) {
+    	return CManager.C1(id, hour);
     }
 
-    public Queue C2(int id,int hourIni,int hourFin) {
-    	return null;
+    public DoublyLinkedList<TravelTime> C2(int id,int hourIni,int hourFin) {
+    	return CManager.C2(id, hourIni, hourFin);
     }
 
     public TravelArea[] C3(int num){

@@ -40,6 +40,9 @@ public class Controller {
 
         double lo = -1;
         double hi = -1;
+        
+        int zone = -1;
+        int hour = -1;
 
 
 
@@ -60,7 +63,6 @@ public class Controller {
 
                     model.loadRequirementsData();
                     break;
-
 
                 case "A1":
                     System.out.println(" \n Ingresar cantidad de letras mas frecuentes a mostrar: \n");
@@ -97,7 +99,41 @@ public class Controller {
 
 
                     break;
+                    
+                case "A3":
+                    System.out.println(" \n Ingresar tiempo inferior: \n");
 
+                    try {
+                        lo = reader.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
+
+                    System.out.println(" \n Ingresar tiempo superior: \n");
+
+                    try {
+                        hi = reader.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
+
+                    printListA3(model.A3(lo,hi));
+
+                    break;
+                    
+                    
+                case "B1":
+                    System.out.println(" \n Ingresar cantidad a mostrar: \n");
+
+                    try {
+                        N = reader.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
+
+                    printArrayB1(model.B1(N));
+
+                    break;
 
                 case "B2":
 
@@ -125,28 +161,79 @@ public class Controller {
                     break;
 
 
-            case "A3":
-                System.out.println(" \n Ingresar tiempo inferior: \n");
+                case "B3":
+                    System.out.println(" \n Ingresar desviacion inferior: \n");
 
-                try {
-                    lo = reader.nextDouble();
-                } catch (Exception e) {
-                    System.out.println("Debe ingresar un n�mero");
-                }
+                    try {
+                        lo = reader.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
 
-                System.out.println(" \n Ingresar tiempo superior: \n");
+                    System.out.println(" \n Ingresar desviacion superior: \n");
 
-                try {
-                    hi = reader.nextDouble();
-                } catch (Exception e) {
-                    System.out.println("Debe ingresar un n�mero");
-                }
+                    try {
+                        hi = reader.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Debe ingresar un n�mero");
+                    }
 
-                printListA3(model.A3(lo,hi));
+                    printListB3(model.A3(lo,hi));
 
-                break;
+                    break;
+                
+          case "C1":
+              System.out.println(" \n Ingresar zona de origen: \n");
 
-                case "C3":
+              try {
+                  zone = reader.nextInt();
+              } catch (Exception e) {
+                  System.out.println("Debe ingresar un n�mero");
+              }
+
+              System.out.println(" \n Ingresar una hora: \n");
+
+              try {
+                  hour = reader.nextInt();
+              } catch (Exception e) {
+                  System.out.println("Debe ingresar un n�mero");
+              }
+              System.out.print(model.C1(zone,hour));
+              printListC2(model.C1(zone,hour));
+
+              break;
+              
+          
+          case "C2":
+        	  System.out.println(" \n Ingresar zona de origen: \n");
+
+              try {
+                  zone = reader.nextInt();
+              } catch (Exception e) {
+                  System.out.println("Debe ingresar un n�mero");
+              }
+              
+              System.out.println(" \n Ingresar hora inferior: \n");
+
+              try {
+                  lo = reader.nextInt();
+              } catch (Exception e) {
+                  System.out.println("Debe ingresar un n�mero");
+              }
+
+              System.out.println(" \n Ingresar hora superior: \n");
+
+              try {
+                  hi = reader.nextInt();
+              } catch (Exception e) {
+                  System.out.println("Debe ingresar un n�mero");
+              }
+
+              printListC2(model.C2(zone,(int)lo,(int)hi));
+
+              break;
+
+           case "C3":
 
                     System.out.println(" \n Ingresar cantidad zonas a mostrar: \n");
 
@@ -160,7 +247,7 @@ public class Controller {
 
                     break;
 
-                case "C4":
+           case "C4":
 
                     System.out.println(model.C4());
 
@@ -203,6 +290,20 @@ public class Controller {
             }
         }
     }
+    
+    private void printArrayB1(TravelArea[] data){
+    	System.out.println("---------------------------------------------------");
+        System.out.printf("%30s %10s %10s", "Nombre", "Latitud", "Longitud");
+        System.out.println();
+        System.out.println("---------------------------------------------------");
+        
+        if (data != null) {
+        	for(int i=0;i<data.length;i++){
+        		System.out.format("%30s %10s %10s", data[i].getName(), data[i].getMaxLatitude(), data[i].getMaxLongitud());
+                System.out.println();
+        	}
+        }
+    }
 
     private void printListB2(DoublyLinkedList<RoadNode> lista) {
         System.out.println("---------------------------------------------------");
@@ -243,6 +344,32 @@ public class Controller {
         for (TravelTime node: lista) {
 
             System.out.format("%10s %10s %10s %16s", node.getIdSource(), node.getIdDestine(), node.getTimeIndicator(), node.getMeanTime());
+            System.out.println();
+        }
+    }
+    
+    private void printListC2(DoublyLinkedList<TravelTime> lista) {
+        System.out.println("------------------------------------------------------------");
+        System.out.printf("%10s %10s %10s %16s", "Origen", "Destino", "Hora", "Tiempo promedio");
+        System.out.println();
+        System.out.println("------------------------------------------------------------");
+
+        for (TravelTime node: lista) {
+
+            System.out.format("%10s %10s %10s %16s", node.getIdSource(), node.getIdDestine(), node.getTimeIndicator(), node.getMeanTime());
+            System.out.println();
+        }
+    }
+    
+    private void printListB3(DoublyLinkedList<TravelTime> lista) {
+        System.out.println("------------------------------------------------------------");
+        System.out.printf("%10s %10s %10s %16s", "Origen", "Destino", "Mes", "Desviacion promedio");
+        System.out.println();
+        System.out.println("------------------------------------------------------------");
+
+        for (TravelTime node: lista) {
+
+            System.out.format("%10s %10s %10s %16s", node.getIdSource(), node.getIdDestine(), node.getTimeIndicator(), node.getStandardDeviation());
             System.out.println();
         }
     }
