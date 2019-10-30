@@ -12,29 +12,87 @@ import java.util.Iterator;
 
 public class CRequirementsManager {
 
-	private RedBlackTree<Integer, TravelTime> C1Tree;
-	private RedBlackTree<Integer, TravelTime> C2Tree;
+	private RedBlackTree<Integer, RedBlackTree<Integer, DoublyLinkedList<TravelTime>>> C1Tree;
+    private RedBlackTree<Integer, RedBlackTree<Integer, DoublyLinkedList<TravelTime>>> C2Tree;
     private  MaxHeap<TravelArea> C3Heap;
-    HashTable<Integer, Double> C4Table;
+    private HashTable<Integer, Double> C4Table;
     //TODO load
     
-    public  void loadC1Data(DoublyLinkedList<TravelTime> travelTimesByMonth1){
+    public  void loadC1Data(DoublyLinkedList<TravelTime> travelTimes){
 
         C1Tree = new RedBlackTree<>();
 
-        for (TravelTime temp: travelTimesByMonth1) {
+        for (TravelTime temp: travelTimes) {
+            if (C1Tree.contains(temp.getIdSource())){
 
-            C1Tree.put(temp.getIdSource(), temp);
+                RedBlackTree<Integer, DoublyLinkedList<TravelTime>> subTree = C1Tree.get(temp.getIdSource());
+
+                putInTree(temp, subTree);
+
+                C1Tree.put(temp.getIdSource(), subTree);
+
+            }
+            else {
+                RedBlackTree<Integer, DoublyLinkedList<TravelTime>> subTree = new RedBlackTree<>();
+
+                DoublyLinkedList<TravelTime> list = new DoublyLinkedList<>();
+
+                list.addLast(temp);
+
+                subTree.put(temp.getTimeIndicator(), list);
+
+                C1Tree.put(temp.getIdSource(), subTree);
+            }
         }
+
+
     }
     
-    public  void loadC2Data(DoublyLinkedList<TravelTime> travelTimesByMonth1){
+    public  void loadC2Data(DoublyLinkedList<TravelTime> travelTimes){
 
         C2Tree = new RedBlackTree<>();
 
-        for (TravelTime temp: travelTimesByMonth1) {
+        for (TravelTime temp: travelTimes) {
+            if (C2Tree.contains(temp.getIdDestine())){
 
-            C2Tree.put(temp.getIdDestine(), temp);
+                RedBlackTree<Integer, DoublyLinkedList<TravelTime>> subTree = C2Tree.get(temp.getIdDestine());
+
+                putInTree(temp, subTree);
+
+                C2Tree.put(temp.getIdDestine(), subTree);
+
+            }
+            else {
+                RedBlackTree<Integer, DoublyLinkedList<TravelTime>> subTree = new RedBlackTree<>();
+
+                DoublyLinkedList<TravelTime> list = new DoublyLinkedList<>();
+
+                list.addLast(temp);
+
+                subTree.put(temp.getTimeIndicator(), list);
+
+                C2Tree.put(temp.getIdDestine(), subTree);
+            }
+        }
+
+    }
+
+    private void putInTree(TravelTime temp, RedBlackTree<Integer, DoublyLinkedList<TravelTime>> subTree) {
+        if (subTree.contains(temp.getTimeIndicator())){
+
+            DoublyLinkedList<TravelTime> list = subTree.get(temp.getTimeIndicator());
+            list.addLast(temp);
+
+            subTree.put(temp.getTimeIndicator(), list);
+
+        }
+        else {
+
+
+            DoublyLinkedList<TravelTime> list = new DoublyLinkedList<>();
+
+            list.addLast(temp);
+            subTree.put(temp.getTimeIndicator(), list);
         }
     }
 
@@ -58,36 +116,51 @@ public class CRequirementsManager {
     
     public DoublyLinkedList<TravelTime> C1(int orig, int hour){
 
-        DoublyLinkedList<TravelTime> ans = new DoublyLinkedList<>();
-        
-        Iterator<TravelTime> iter = C1Tree.valuesInRange(orig-1, orig+1);
+        DoublyLinkedList<TravelTime> ans;
 
-        if (iter != null) {
-            for (Iterator<TravelTime> it = iter; it.hasNext(); ) {
-                TravelTime temp = it.next();
-                if (temp.getTimeIndicator() == hour) {
-                    ans.addLast(temp);
-                }
-            }
-        }
-        
+        ans = C1Tree.get(orig).get(hour);
+
+        ans.mergeSort(new DestineComparator());
+
         return ans;
     }
-    
-    public DoublyLinkedList<TravelTime> C2(int dest, int inf,int sup){
-        DoublyLinkedList<TravelTime> ans = new DoublyLinkedList<>();
-        
-        Iterator<TravelTime> iter = C1Tree.valuesInRange(dest, dest);
-        
-        for (Iterator<TravelTime> it = iter; it.hasNext(); ) {
 
-            TravelTime temp = it.next();
-            if(temp.getTimeIndicator()>=inf && temp.getTimeIndicator() <= sup){
-            	ans.addLast(temp);
-            }
+    private static class DestineComparator implements Comparator<TravelTime> {
+
+        public int compare(TravelTime o1, TravelTime o2) {
+
+            if (o1.getIdDestine() < o2.getIdDestine()) return -1;
+            if (o1.getIdDestine() > o2.getIdDestine()) return 1;
+            else return 0;
         }
-        
+    }
+
+
+    public DoublyLinkedList<TravelTime> C2(int dest, int inf,int sup){
+
+        DoublyLinkedList<TravelTime> ans = new DoublyLinkedList<>();
+
+        Iterator<DoublyLinkedList<TravelTime>> iter = C2Tree.get(dest).valuesInRange(inf,sup);
+
+        for (Iterator<DoublyLinkedList<TravelTime>> it = iter; it.hasNext(); ) {
+            DoublyLinkedList<TravelTime> temp = it.next();
+
+            ans.addAll(temp);
+        }
+
+        ans.mergeSort(new HourComparator());
+
         return ans;
+    }
+
+    private static class HourComparator implements Comparator<TravelTime> {
+
+        public int compare(TravelTime o1, TravelTime o2) {
+
+            if (o1.getTimeIndicator() < o2.getTimeIndicator()) return -1;
+            if (o1.getTimeIndicator() > o2.getTimeIndicator()) return 1;
+            else return 0;
+        }
     }
 
     public TravelArea[] C3(int num) {
@@ -101,7 +174,7 @@ public class CRequirementsManager {
         return prioritized;
     }
 
-    private class NumNodesComparator implements Comparator<TravelArea> {
+    private static class NumNodesComparator implements Comparator<TravelArea> {
 
         public int compare(TravelArea o1, TravelArea o2) {
 
