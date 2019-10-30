@@ -57,14 +57,17 @@ public class CRequirementsManager {
     //TODO metodos
     
     public DoublyLinkedList<TravelTime> C1(int orig, int hour){
+
         DoublyLinkedList<TravelTime> ans = new DoublyLinkedList<>();
         
         Iterator<TravelTime> iter = C1Tree.valuesInRange(orig-1, orig+1);
-        
-        for (Iterator<TravelTime> it = iter; it.hasNext(); ) {
-            TravelTime temp = it.next();
-            if(temp.getTimeIndicator() == hour){
-            	ans.addLast(temp);
+
+        if (iter != null) {
+            for (Iterator<TravelTime> it = iter; it.hasNext(); ) {
+                TravelTime temp = it.next();
+                if (temp.getTimeIndicator() == hour) {
+                    ans.addLast(temp);
+                }
             }
         }
         
