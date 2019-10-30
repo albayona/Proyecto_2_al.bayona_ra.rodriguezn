@@ -342,7 +342,13 @@ public class DoublyLinkedList<E> implements Iterable<E>{
         return items;
     }
 
-
+    public void addAll(DoublyLinkedList<E> doublyLinkedList)
+    {
+        for(E o : doublyLinkedList)
+        {
+            this.addLast(o);
+        }
+    }
 
 }
 
