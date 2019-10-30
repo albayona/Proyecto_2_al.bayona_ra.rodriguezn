@@ -208,7 +208,7 @@ public class Controller {
               
           
           case "C2":
-        	  System.out.println(" \n Ingresar zona de origen: \n");
+        	  System.out.println(" \n Ingresar zona de destino: \n");
 
               try {
                   zone = reader.nextInt();
