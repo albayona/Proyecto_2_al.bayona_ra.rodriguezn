@@ -140,15 +140,20 @@ public class CRequirementsManager {
 
         DoublyLinkedList<TravelTime> ans = new DoublyLinkedList<>();
 
-        Iterator<DoublyLinkedList<TravelTime>> iter = C2Tree.get(dest).valuesInRange(inf,sup);
+        RedBlackTree tree = C2Tree.get(dest);
+        Iterator<DoublyLinkedList<TravelTime>> iter = null;
 
-        for (Iterator<DoublyLinkedList<TravelTime>> it = iter; it.hasNext(); ) {
-            DoublyLinkedList<TravelTime> temp = it.next();
+        if (tree != null) iter = tree.valuesInRange(inf,sup);
 
-            ans.addAll(temp);
+        if (iter != null) {
+            for (Iterator<DoublyLinkedList<TravelTime>> it = iter; it.hasNext(); ) {
+                DoublyLinkedList<TravelTime> temp = it.next();
+
+                ans.addAll(temp);
+            }
+
+            ans.mergeSort(new HourComparator());
         }
-
-        ans.mergeSort(new HourComparator());
 
         return ans;
     }
