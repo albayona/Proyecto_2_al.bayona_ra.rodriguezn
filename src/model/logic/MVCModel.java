@@ -135,7 +135,7 @@ public class MVCModel {
         return BManager.B2( latitute,  longitute);
     }
 
-    public DoublyLinkedList<TravelTime> B3(double inf, double sup) {
+    public TravelTime[] B3(double inf, double sup) {
     	return BManager.B3(inf, sup);
     }
 

@@ -3,10 +3,7 @@ package model.logic;
 import java.util.Comparator;
 import java.util.Iterator;
 
-import model.data_structures.DoublyLinkedList;
-import model.data_structures.HashTable;
-import model.data_structures.MaxHeap;
-import model.data_structures.RedBlackTree;
+import model.data_structures.*;
 import model.value_objects.RoadNode;
 import model.value_objects.TravelArea;
 import model.value_objects.TravelTime;
@@ -77,7 +74,7 @@ public class BRequirementsManager {
         return B2Table.get(Math.floor(latitute*100) + "-"  + Math.floor(longitute*100));
     }
 
-    public DoublyLinkedList<TravelTime> B3(double inf, double sup) {
+    public TravelTime[] B3(double inf, double sup) {
         DoublyLinkedList<TravelTime> ans = new DoublyLinkedList<>();
         
         Iterator<TravelTime> iter = B3Tree.valuesInRange(inf, sup);
@@ -88,14 +85,25 @@ public class BRequirementsManager {
 
             ans.addLast(temp);
         }
+
+        TravelTime[] times = toArray(ans);
+
+        MergeSort.mergeSort(times, new TravelDestineComparator());
+        MergeSort.mergeSort(times, new TravelSourceComparator());
         
-        ans.mergeSort(new TravelDestineComparator());
-        ans.mergeSort(new TravelSourceComparator());
-        
-        return ans;
+        return times;
     }
-    
-    
+
+    private TravelTime[] toArray(DoublyLinkedList<TravelTime> list) {
+
+        TravelTime[] arr = new TravelTime[list.size()];
+        int i = 0;
+        for (TravelTime val : list){
+            arr[i++] = val;
+        }
+
+        return arr;
+    }
     
     //TODO adicionales
     private class NumAreasComparator implements Comparator<TravelArea> {
@@ -107,23 +115,23 @@ public class BRequirementsManager {
             else return 0;
         }
     }
-    
-    private class TravelSourceComparator implements Comparator<TravelTime> {
 
-        public int compare(TravelTime o1, TravelTime o2) {
+    private static class TravelSourceComparator implements Comparator<Object> {
 
-            if (o1.getIdSource() < o2.getIdSource()) return -1;
-            if (o1.getIdSource() > o2.getIdSource()) return 1;
+        public int compare(Object o1, Object o2) {
+
+            if (((TravelTime)o1).getIdSource() < ((TravelTime)o2).getIdSource()) return -1;
+            if (((TravelTime)o1).getIdSource() > ((TravelTime)o2).getIdSource()) return 1;
             else return 0;
         }
     }
 
-    private class TravelDestineComparator implements Comparator<TravelTime> {
+    private static class TravelDestineComparator implements Comparator<Object> {
 
-        public int compare(TravelTime o1, TravelTime o2) {
+        public int compare(Object o1, Object o2) {
 
-            if (o1.getIdDestine() < o2.getIdDestine()) return -1;
-            if (o1.getIdDestine() > o2.getIdDestine()) return 1;
+            if (((TravelTime)o1).getIdDestine() < ((TravelTime)o2).getIdDestine()) return -1;
+            if (((TravelTime)o1).getIdDestine() > ((TravelTime)o2).getIdDestine()) return 1;
             else return 0;
         }
     }
